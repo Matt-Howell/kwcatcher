@@ -87,7 +87,7 @@ export default function Header(props) {
             </Flex>
             <Flex justify="flex-end" align="center" color="gray.400">
               <HStack spacing="3" display={{ base: "none", sm:"flex" }}>
-                 <Link display={{ base:"none", md:"flex" }} _hover={{textDecoration:"none"}}><Button colorScheme="blue" _hover={{opacity:0.8}} variant="outline" size="sm">1234 Credits</Button></Link>
+                 <Link display={{ base:"none", md:"flex" }} _hover={{textDecoration:"none"}}><Button colorScheme="blue" _hover={{opacity:0.8}} variant="outline" size="sm">Unlimited Credits</Button></Link>
               </HStack>
               <Menu>
                 <MenuButton as={IconButton}
@@ -179,6 +179,7 @@ const MobileNav = () => {
   
   const MobileNavItem = ({ label, children, href }) => {
     const { isOpen, onToggle } = useDisclosure();
+    let coll = useColorModeValue('gray.600', 'gray.200')
   
     return (
       <Stack spacing={4} onClick={children && onToggle}>
@@ -193,13 +194,13 @@ const MobileNav = () => {
           }}>
           <Text
             fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
+            color={coll}>
             {label}
           </Text>
           {children && (
             <Icon
               as={FaChevronDown}
-              color={useColorModeValue('gray.600', 'gray.200')}
+              color={coll}
               transition={'all .25s ease-in-out'}
               transform={isOpen ? 'rotate(180deg)' : ''}
               w={3}
@@ -235,8 +236,8 @@ const MobileNav = () => {
   
     return (
       <Stack direction={'row'} spacing={4}>
-        {NAV_ITEMS.map((navItem) => (
-          <Box>
+        {NAV_ITEMS.map((navItem, i) => (
+          <Box key={i}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 <Link
